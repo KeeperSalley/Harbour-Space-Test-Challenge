@@ -1,10 +1,14 @@
 import React from 'react';
-import {useState, useContext} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import {ApprenticeshipContext} from '../../contexts/ApprenticeshipContext'
-
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
 const FaqAnswer = ({selection}) => {
-    /*console.log(`selection`, selection)*/
-    const {data, isPending, error} = useContext(ApprenticeshipContext)
+    const {data} = useContext(ApprenticeshipContext)
+    let [isMore, rotate, setToggleState] = useState('');
+
 
     return <div>  { data && data.scholarship.faqs.items
                     .filter( item => {
@@ -12,13 +16,29 @@ const FaqAnswer = ({selection}) => {
                     })
                     .map( (el, i) => {
                         return <div className="format-row-item border-top" key={i}>
-                                    <h2 className="format-1third-section">{selection}</h2>
-                                    <details className="format-2third-section">
-                                        <summary>{el.question}</summary>
-                                        {el.answer.map( (an,i) => {
-                                            return <p className="answer text-small" key={i}>{an.data}</p>
-                                        })}
-                                    </details>
+                        <Accordion id="Accordion">
+        <AccordionSummary
+          expandIcon={<div class="read-more">
+            <div
+              class="plus-minus"
+            >
+              <span class="horizontal-bar" />
+              <span class="vertical-bar" />
+            </div>
+          </div>}
+          aria-controls="panel1a-content"
+          id="panel1a-header">
+          <h2 className="format-1third-section">{selection}</h2>
+          <Typography id="question">{el.question}</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+        {el.answer.map( (an,i) => {
+            return <Typography id="answer">{an.data}</Typography>
+        })}
+        </AccordionDetails>
+
+      </Accordion>
+
                             </div>
                     })
         }

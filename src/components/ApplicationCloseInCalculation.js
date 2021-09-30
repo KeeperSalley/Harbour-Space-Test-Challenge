@@ -45,6 +45,7 @@ function Renderer() {
   });
 
   return (
+  /* Таймер работает */
     <Clock
        timerDays={timerDays}
        timerHours={timerHours}

@@ -13,9 +13,11 @@ const AboutSection = () => {
             <div className="format-half-section background-rounded" style={{ backgroundImage: "url(/img/PatternStudent.png)" }}>
                 <img className="rounded-img" src="/img/edit2 1.png" alt="student"/>
             </div>
-            <div className="format-half-section">
+            <div className="format-half-section background-mobile">
+              <div className="Test">
                 <h1>About the Apprenticeship</h1>
                 <p>{data.scholarship.about[0].data}</p>
+              </div>
             </div>
         </header>
         <div className="format-section">
